@@ -137,6 +137,19 @@ export default function Project({ params }: ProjectPageProps) {
                   priority
                 />
               ))}
+              {page.videoArr && page.videoArr.map((video, ind) => (
+                <video
+                  key={ind}
+                  width={720}
+                  height={405}
+                  className="my-4 rounded-md border bg-muted transition-colors"
+                  controls
+                  preload="metadata"
+                >
+                  <source src={video} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ))}
             </div>
           </div>
         ))}
