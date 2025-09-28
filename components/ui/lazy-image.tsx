@@ -24,32 +24,33 @@ export default function LazyImage({
     const [isLoaded, setIsLoaded] = useState(priority);
     const imageRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        if (priority) return;
+  useEffect(() => {
+    if (priority) return;
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting && !isLoaded) {
-                    setIsInView(true);
-                    setIsLoaded(true);
-                }
-            },
-            {
-                threshold: 0.1,
-                rootMargin: "50px",
-            }
-        );
-
-        if (imageRef.current) {
-            observer.observe(imageRef.current);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isLoaded) {
+          setIsInView(true);
+          setIsLoaded(true);
         }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "50px",
+      }
+    );
 
-        return () => {
-            if (imageRef.current) {
-                observer.unobserve(imageRef.current);
-            }
-        };
-    }, [isLoaded, priority]);
+    const currentRef = imageRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [isLoaded, priority]);
 
     return (
         <div ref={imageRef} className={`my-4 ${className}`}>

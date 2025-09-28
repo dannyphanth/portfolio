@@ -21,30 +21,31 @@ export default function LazyVideo({
     const [isLoaded, setIsLoaded] = useState(false);
     const videoRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting && !isLoaded) {
-                    setIsInView(true);
-                    setIsLoaded(true);
-                }
-            },
-            {
-                threshold: 0.1,
-                rootMargin: "50px",
-            }
-        );
-
-        if (videoRef.current) {
-            observer.observe(videoRef.current);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isLoaded) {
+          setIsInView(true);
+          setIsLoaded(true);
         }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "50px",
+      }
+    );
 
-        return () => {
-            if (videoRef.current) {
-                observer.unobserve(videoRef.current);
-            }
-        };
-    }, [isLoaded]);
+    const currentRef = videoRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [isLoaded]);
 
     return (
         <div ref={videoRef} className={`my-4 ${className}`}>
