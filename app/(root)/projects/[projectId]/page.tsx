@@ -11,7 +11,7 @@ import LazyVideo from "@/components/ui/lazy-video";
 import { Projects } from "@/config/projects";
 import { siteConfig } from "@/config/site";
 import { cn, formatDateFromObj } from "@/lib/utils";
-import profileImg from "/DannyImagePortfolio.JPG";
+const profileImg = "/DannyImagePortfolio.JPG";
 
 interface ProjectPageProps {
   params: {
