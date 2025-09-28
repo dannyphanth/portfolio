@@ -46,15 +46,6 @@ export const pagesConfig: PagesConfig = {
       description: "Contact Daniel Caceres.",
     },
   },
-  contributions: {
-    title: "Contributions",
-    description: "Open-source contributions and community involvement.",
-    metadata: {
-      title: "Contributions",
-      description:
-        "Daniel Caceres's open-source contributions and community involvement.",
-    },
-  },
   resume: {
     title: "Resume",
     description: "Daniel Caceres's resume.",

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -7,10 +6,12 @@ import ProjectDescription from "@/components/projects/project-description";
 import { buttonVariants } from "@/components/ui/button";
 import ChipContainer from "@/components/ui/chip-container";
 import CustomTooltip from "@/components/ui/custom-tooltip";
+import LazyImage from "@/components/ui/lazy-image";
+import LazyVideo from "@/components/ui/lazy-video";
 import { Projects } from "@/config/projects";
 import { siteConfig } from "@/config/site";
 import { cn, formatDateFromObj } from "@/lib/utils";
-import profileImg from "@/public/profile-img.jpg";
+import profileImg from "/DannyImagePortfolio.JPG";
 
 interface ProjectPageProps {
   params: {
@@ -79,7 +80,7 @@ export default function Project({ params }: ProjectPageProps) {
             />
 
             <div className="flex-1 text-left leading-tight">
-              <p className="font-medium">{"Naman Barkiya"}</p>
+              <p className="font-medium">{"Daniel Caceres"}</p>
               <p className="text-[12px] text-muted-foreground">
                 @{siteConfig.username}
               </p>
@@ -127,28 +128,22 @@ export default function Project({ params }: ProjectPageProps) {
             <div>
               <p>{page.description}</p>
               {page.imgArr.map((img, ind) => (
-                <Image
-                  src={img}
+                <LazyImage
                   key={ind}
-                  alt={img}
+                  src={img}
+                  alt={`${page.title} - Image ${ind + 1}`}
                   width={720}
                   height={405}
-                  className="my-4 rounded-md border bg-muted transition-colors"
-                  priority
+                  priority={ind === 0}
                 />
               ))}
               {page.videoArr && page.videoArr.map((video, ind) => (
-                <video
+                <LazyVideo
                   key={ind}
+                  src={video}
                   width={720}
                   height={405}
-                  className="my-4 rounded-md border bg-muted transition-colors"
-                  controls
-                  preload="metadata"
-                >
-                  <source src={video} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                />
               ))}
             </div>
           </div>

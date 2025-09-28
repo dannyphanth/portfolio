@@ -19,6 +19,18 @@ const nextConfig = {
       },
     ];
   },
+  // Optimize performance
+  swcMinify: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
+  },
+  // Reduce bundle size
+  experimental: {
+    optimizePackageImports: ['lucide-react'],
+  },
+  // Improve caching
+  generateEtags: false,
+  poweredByHeader: false,
 };
 
 module.exports = nextConfig;

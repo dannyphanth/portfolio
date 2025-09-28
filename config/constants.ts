@@ -56,11 +56,12 @@ export type ValidSkills =
   | "Flutter"
   | "Dart"
   | "Flask"
-  | "Django"
-  | "FastAPI"
   | "SQL"
   | "NoSQL"
-  | "Framer Motion";
+  | "Framer Motion"
+  | "C++"
+  | "Qt"
+  | "RESTful API";
 
 export type ValidCategory =
   | "Full Stack"
@@ -69,7 +70,8 @@ export type ValidCategory =
   | "UI/UX"
   | "Web Dev"
   | "Mobile Dev"
-  | "3D Modeling";
+  | "3D Modeling"
+  | "Software Dev";
 
 export type ValidExpType = "Personal" | "Professional";
 
@@ -79,5 +81,4 @@ export type ValidPages =
   | "projects"
   | "experience"
   | "contact"
-  | "contributions"
   | "resume";
